@@ -1,5 +1,5 @@
 public class MyLinkedList<E>{
-	
+
 	private class Node{
 		private E data;
 		private Node next, prev;
@@ -133,39 +133,11 @@ public class MyLinkedList<E>{
 		}
 		return -1;
 	}
-	public void add(int index, E value) {
-		if (index < 0 || index > size()) {
-			throw new IndexOutOfBoundsException("index is out of range");
-		}
-		Node addition = new Node(value);
-		if (index != size()) {
-			getNthNode(index).setPrev(addition);
-			addition.setNext(getNthNode(index));
-		}
-		if (index != 0) {
-			getNthNode(index-1).setNext(addition);
-			addition.setPrev(getNthNode(index-1));
-		} else {
-			start = addition;
-		}
-		size++;
-	}
-	public E remove(int index) {
-		if (index < 0 || index >= size()) {
-			throw new IndexOutOfBoundsException("index is out of range");
-		}
-		E x = (E)getNthNode(index).getData();
-		if (index == size()-1) {
-			getNthNode(index-1).setNext(getNthNode(index+1).next());
-		}
-		if (index == 0) {
-			getNthNode(index+1).setPrev(getNthNode(index-1).prev());
-		} else {
-			getNthNode(index-1).setNext(getNthNode(index+1));
-			getNthNode(index).setPrev(getNthNode(index-1));
-		}
+	public E removeFront() {
+		E element = (E)start.getData();
+		start = start.next();
 		size--;
-		return x;
+		return element;
 	}
 	// public boolean remove(E value) {
 	// 	 index = indexOf(value);
