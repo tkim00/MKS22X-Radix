@@ -1,6 +1,44 @@
 public class MyLinkedList<E>{
+	
+	private class Node{
+		private E data;
+		private Node next, prev;
+
+		public Node(E value) {
+			data = value;
+			prev = null;
+			next = null;
+		}
+
+		public Node next() {
+			return next;
+		}
+		public Node prev() {
+			return prev;
+		}
+		public void setNext(Node other) {
+			next = other;
+		}
+		public void setPrev(Node other) {
+			prev = other;
+		}
+		public E getData() {
+			return data;
+		}
+		public E setData(E i) {
+			E x = data;
+			data = i;
+			return x;
+		}
+		public String toString() {
+			return "" + data;
+		}
+	}
+
+
 	private int size;
 	private Node start, end;
+	@SuppressWarnings("unchecked")
 
 	public MyLinkedList() {
 		size = 0;
@@ -63,13 +101,13 @@ public class MyLinkedList<E>{
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException("index is out of range");
 		}
-		return getNthNode(index).getData();
+		return (E)getNthNode(index).getData();
 	}
 	public E set(int index, E value) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException("index is out of range");
 		}
-		E x = getNthNode(index).getData();
+		E x = (E)getNthNode(index).getData();
 		getNthNode(index).setData(value);
 		return x;
 	}
@@ -116,7 +154,7 @@ public class MyLinkedList<E>{
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException("index is out of range");
 		}
-		E x = getNthNode(index).getData();
+		E x = (E)getNthNode(index).getData();
 		if (index == size()-1) {
 			getNthNode(index-1).setNext(getNthNode(index+1).next());
 		}
@@ -143,7 +181,7 @@ public class MyLinkedList<E>{
 	// 	size--;
 	// 	return true;
 	// }
-	public void extend(MyLinkedList other){
+	public void extend(MyLinkedList<E> other){
     //in O(1) runtime, move the elements from other onto the end of this
     //The size of other is reduced to 0
     //The size of this is now the combined sizes of both original lists
