@@ -157,9 +157,14 @@ public class MyLinkedList<E>{
     //in O(1) runtime, move the elements from other onto the end of this
     //The size of other is reduced to 0
     //The size of this is now the combined sizes of both original lists
-		end.setNext(other.start);
-		other.start.setPrev(end);
-		end = other.end;
+		if (size() == 0) {
+			start = other.start;
+			end = other.end;
+		} else {
+			end.setNext(other.start);
+			other.start.setPrev(end);
+			end = other.end;
+		}
 		size += other.size();
 		other.clear();
   }
