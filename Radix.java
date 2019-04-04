@@ -16,7 +16,7 @@ public class Radix {
     }
     for (int i = 0; i < maxDigit; i++) {
       for (int j = 0; j < data.length; j++) {
-        int digit = (data[j] / (int)Math.pow(10, i)) % 10;
+        int digit = (Math.abs(data[j]) / (int)Math.pow(10, i)) % 10; //finds the digit 
         if (data[j] < 0) {
 
         }
